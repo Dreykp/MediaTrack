@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app.apps.AppsConfig',
+    'account.apps.AccountConfig',
 ]
 
 MIDDLEWARE = [
@@ -62,6 +62,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'account.context_processors.global_settings'
             ],
         },
     },
@@ -125,3 +126,7 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = 'login/'  # URL для сторінки входу
+LOGIN_REDIRECT_URL = ''  # URL для перенаправлення після успішного входу (наприклад, головна сторінка)
+LOGOUT_REDIRECT_URL = 'login/'  # URL для перенаправлення після виходу
