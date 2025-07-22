@@ -7,6 +7,14 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 
+@login_required
+def profile_view(request):
+    """
+    Відображає сторінку профілю користувача.
+    """
+    return render(request, 'account/profile.html')
+
+
 def login_view(request):
     if request.user.is_authenticated:
         return redirect('main_page')

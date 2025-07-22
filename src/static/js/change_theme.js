@@ -5,11 +5,11 @@ const themeToggleBtn = document.getElementById('theme-toggle');
 
     function updateIcons(currentTheme) {
       if (currentTheme === 'dark') {
-        sunIcon.classList.add('hidden');
-        moonIcon.classList.remove('hidden');
-      } else {
-        sunIcon.classList.remove('hidden');
         moonIcon.classList.add('hidden');
+        sunIcon.classList.remove('hidden');
+      } else {
+        moonIcon.classList.remove('hidden');
+        sunIcon.classList.add('hidden');
       }
     }
 

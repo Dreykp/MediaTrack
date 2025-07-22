@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html data-theme="light">
+<html data-theme="light" lang="uk">
 <head>
     <title>Home - {{ BRAND_NAME }}</title>
     {% load static %}
     <link href="{% static 'css/output.css' %}" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div class="navbar bg-base-100 shadow-sm">
+    <div class="navbar bg-base-100 shadow-sm sticky top-0 z-50">
       <div class="navbar-start drawer">
         <div class="dropdown dropdown-hover">
           <div tabindex="0" role="button" class="btn btn-ghost btn-circle m-1">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /> </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
           </div>
           <ul
             tabindex="0"
@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="navbar-center">
-        <a class="btn btn-ghost text-xl">{{ BRAND_NAME }}</a>
+        <a class="text-xl font-bold" href="{% url 'main_page' %}">{{ BRAND_NAME }}</a>
       </div>
       <div class="navbar-end">
         <button id="theme-toggle" class="btn btn-ghost btn-circle">
@@ -55,10 +55,7 @@
                 tabindex="0"
                 class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                 <li>
-                  <a class="justify-between">
-                    Profile
-                    <span class="badge">New</span>
-                  </a>
+                  <a class="justify-between" href="{% url 'profile' %}">Profile</a>
                 </li>
                 <li><a>Settings</a></li>
                 <li><a href="{% url 'logout' %}">Logout</a></li>
@@ -66,33 +63,8 @@
             </div>
       </div>
     </div>
-<script>
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const htmlElement = document.documentElement;
-    const sunIcon = document.getElementById('sun-icon');
-    const moonIcon = document.getElementById('moon-icon');
-
-    function updateIcons(currentTheme) {
-      if (currentTheme === 'dark') {
-        sunIcon.classList.add('hidden');
-        moonIcon.classList.remove('hidden');
-      } else {
-        sunIcon.classList.remove('hidden');
-        moonIcon.classList.add('hidden');
-      }
-    }
-
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    htmlElement.setAttribute('data-theme', savedTheme);
-    updateIcons(savedTheme);
-
-    themeToggleBtn.addEventListener('click', () => {
-      let currentTheme = htmlElement.getAttribute('data-theme');
-      let newTheme = currentTheme === 'light' ? 'dark' : 'light';
-      htmlElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-      updateIcons(newTheme);
-    });
-  </script>
+    {% block content %}
+    {% endblock %}
+<script src="{% static 'js/change_theme.js' %}"></script>
 </body>
 </html>
